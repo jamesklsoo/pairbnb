@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "clearance/sessions", only: [:create]
 
-  resources :users, controller: "clearance/users", only: Clearance.configuration.user_actions do
+  resources :users, controller: "users", only: [:create, :show, :edit, :update, :destroy] do
+    resource :listings, except: [:index]
     resource :password,
       controller: "clearance/passwords",
       only: [:create, :edit, :update]
@@ -12,7 +13,7 @@ Rails.application.routes.draw do
   delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"
   get "/sign_up" => "clearance/users#new", as: "sign_up"
 
-  get 'welcome/index'
+  get "/listings" => "listings#index"
 
   root 'welcome#index'
 end
