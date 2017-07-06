@@ -1,0 +1,95 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2">
+    <h1 class="text-center">
+      Name
+    </h1>
+    <h3 class="text-center">
+      <%= @listing.name %>
+    </h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2">
+    <h1 class="text-center">
+      Property Type
+    </h1>
+    <h3 class="text-center">
+      <%= @listing.property_type %>
+    </h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2 col-xs-offset-8 col-xs-8">
+    <div class="col-md-4 col-xs-4">
+      <h1 class="text-center">
+        Room Number
+      </h1>
+      <h3 class="text-center">
+        <%= @listing.room_number %>
+      </h3>
+    </div>
+    <div class="col-md-4 col-xs-4">
+      <h1 class="text-center">
+        Bed Number
+      </h1>
+      <h3 class="text-center">
+        <%= @listing.bed_number %>
+      </h3>
+    </div>
+    <div class="col-md-4 col-xs-4">
+      <h1 class="text-center">
+        Guest Number
+      </h1>
+      <h3 class="text-center">
+        <%= @listing.guest_number %>
+      </h3>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2">
+    <h1 class="text-center">
+      Address
+    </h1>
+    <h3 class="text-center">
+      <%= "#{@listing.country}, #{@listing.state}, #{@listing.city}, #{@listing.zipcode}, #{@listing.address}" %>
+    </h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2">
+    <h1 class="text-center">
+      Price
+    </h1>
+    <h3 class="text-center">
+      RM <%= @listing.price %>
+    </h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2">
+    <h1 class="text-center">
+      Description
+    </h1>
+    <h3 class="text-center">
+      <%= @listing.description %>
+    </h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2">
+    <h1 class="text-center">
+      Availability
+    </h1>
+    <h3 class="text-center">
+      <%= @listing.start_date.strftime("%a, %d/%m/%Y") %> to <%= @listing.end_date.strftime("%a, %d/%m/%Y") %>
+    </h3>
+  </div>
+</div>
+<% if current_user == @user %>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2 text-center">
+      <%= link_to "Edit Listing", edit_user_listing_path(current_user, @listing), class: "btn btn-default" %>
+    </div>
+  </div>
+<% end %>

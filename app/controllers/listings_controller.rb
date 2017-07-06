@@ -1,42 +1,52 @@
 class ListingsController < ApplicationController
+  before_action :find_user, except: :index
+  before_action :find_listing, only: [:show, :edit, :update, :destroy]
+
   def index
     @listings = Listing.all
   end
 
   def new
-    @listing = Listing.new
+    @listing = @user.listings.new
   end
 
   def show
-    @listing = Listing.find(params[:id])
   end
 
   def create
-    @listing = Listing.new(params[:id])
-
+    @listing = @user.listings.new(listing_params)
     if @listing.save
-      redirect_to @listing
+      redirect_to [@user, @listing]
     else
-      render 'new'
+      render :new
     end
   end
 
   def edit
-    @listing = Listing.find(params[:id])
   end
 
   def update
-    @listing = Listing.find(params[:id])
     if @listing.update(listing_params)
-      redirect_to @listing
+      redirect_to [@user, @listing]
     else
-      render 'edit'
+      render :new
     end
   end
 
   def destroy
-    @listing = Listing.find(params[:id])
     @listing.destroy
-    redirect_to users_path
+    redirect_to root_path
+  end
+  private
+
+  def listing_params
+    params.require(:listing).permit(:name, :property_type, :room_number, :bed_number, :guest_number, :country, :city, :state, :zipcode, :address, :price, :description, :start_date, :end_date)
+  end
+  def find_user
+    @user = User.find(params[:user_id])
+  end
+
+  def find_listing
+    @listing = @user.listings.find(params[:id])
   end
 end

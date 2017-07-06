@@ -1,2 +1,14 @@
-<h1>Welcome to Pairbnb</h1>
-<p>The place to look for a place</p>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2">
+    <h1 class="text-center">
+      Welcome To BlairBnB
+    </h1>
+  </div>
+</div>
+<% if signed_in? %>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2">
+      <%= link_to "New Listing", new_user_listing_path(current_user), class: "btn btn-sm btn-default btn-block" %>
+    </div>
+  </div>
+<% end %>

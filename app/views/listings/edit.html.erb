@@ -1,0 +1,19 @@
+<div class="row">
+  <div class-"col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2">
+    <h1 class="text-center">
+      Edit Your Listing
+    </h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2">
+    <%= form_for [@user, @listing] do |f| %>
+      <%= render partial: "form", locals: {f: f} %>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2 text-center">
+    <%= link_to "Delete Listing", user_listing_path, method: :delete, data: {confirmation: "Are you sure?"}, class: "btn btn-danger" %>
+  </div>
+</div>
