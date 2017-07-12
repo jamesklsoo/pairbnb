@@ -1,16 +1,40 @@
-<div class="spacing"></div>
-<div class="text-field form-group">
-  <%= form.label :email %>
-  <%= form.text_field :email, type: 'email', class: "form-control" %>
+<div class="text-field">
+  <%= form.label :last_name %>
+  <%= form.text_field :last_name, type: 'text' %>
 </div>
-<div class="form-group">
-  <%= form.label :username %>
-  <%= form.text_field :username, class: "form-control" %>
+<div class="text-field">
+  <%= form.label :first_name %>
+  <%= form.text_field :first_name, type: 'text' %>
 </div>
-<% unless current_user %>
-  <div class="password-field form-group">
-    <%= form.label :password %>
-    <%= form.password_field :password, class: "form-control" %>
-  </div>
-<% end %>
-<div class="spacing"></div>
+<div class="text-field">
+  <%= form.label :phone_number %>
+  <%= form.text_field :phone_number, type: 'text' %>
+</div>
+<div class="text-field">
+  <%= form.label :government_id, "Government ID" %>
+  <%= form.text_field :government_id, type: 'text' %>
+</div>
+<div class="text-field">
+  <%= form.label :location %>
+  <%= form.text_field :location, type: 'text' %>
+</div>
+<div class="text-field">
+  <%= form.label :gender %>
+  <%= form.text_field :gender, type: 'text' %>
+</div>
+<div class="text-field">
+  <%= form.label :birthday, "Birth Date" %>
+  <%= form.text_field :birthday, type: 'date' %>
+</div>
+<div class="text-field">
+  <%= form.label :autobiography %>
+  <%= form.text_area :autobiography, type: 'text' %>
+</div>
+<div class="text-field">
+  <%= form.label :email%>
+  <%= form.text_field :email, type: 'email' %>
+</div>
+<div class="text-field">
+  <%= form.label :avatar %>
+  <%= form.file_field :avatar %>
+</div>

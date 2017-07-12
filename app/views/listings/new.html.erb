@@ -1,16 +1,9 @@
-<div class="spacing"></div>
-<div class="row">
-  <div class="col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2">
-    <h1 class="text-center">
-      Make A New listing
-    </h1>
-  </div>
+<div id="clearance" class="create-listing">
+  <h2><%= t(".title") %></h2>
+  <%= form_for @listing, remote: true,  authenticity_token: true  do |form| %>
+    <%= render partial: '/listings/form', object: form %>
+    <div class="submit-field">
+      <%= form.submit %>
+    </div>
+  <% end %>
 </div>
-<div class="row">
-  <div class="col-md-8 col-md-offset-2 col-xs-offset-2 col-xs-8 box">
-    <%= form_for [current_user, @listing] do |f| %>
-      <%= render partial: "form", locals: {f: f} %>
-    <% end %>
-  </div>
-</div>
-<div class="spacing"></div>

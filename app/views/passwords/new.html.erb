@@ -1,25 +1,13 @@
 <div id="clearance" class="password-reset">
-  <div class="row">
-    <div class="col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2 box">
-      <h2 class="text-center"><%= t(".title") %></h2>
+  <h2><%= t(".title") %></h2>
+  <p><%= t(".description") %></p>
+  <%= form_for :password, url: passwords_path do |form| %>
+    <div class="text-field">
+      <%= form.label :email %>
+      <%= form.text_field :email, type: 'email' %>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2">
-      <p class="text-center"><%= t(".description") %></p>
+    <div class="submit-field">
+      <%= form.submit %>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2">
-      <%= form_for :password, url: passwords_path do |form| %>
-        <div class="text-field form-group">
-          <%= form.label :email %>
-          <%= form.text_field :email, type: 'email', class: "form-control" %>
-        </div>
-        <div class="submit-field text-center">
-          <%= form.submit "Reset Password", class: "btn btn-default" %>
-        </div>
-      <% end %>
-    </div>
-  </div>
+  <% end %>
 </div>

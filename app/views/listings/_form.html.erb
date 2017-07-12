@@ -1,63 +1,63 @@
-<div class="spacing"></div>
-<div class="form-group">
-  <%= f.label :name %>
-  <%= f.text_field :name, class: "form-control" %>
+<div class="text-field">
+  <%= form.label :name %>
+  <%= form.text_field :name, type: 'text' %>
 </div>
-<div class="row">
-  <div class="col-md-4 form-group">
-    <%= f.label :room_number %>
-    <%= f.number_field :room_number, class: "form-control" %>
-  </div>
-  <div class="col-md-4 form-group">
-    <%= f.label :bed_number %>
-    <%= f.number_field :bed_number, class: "form-control" %>
-  </div>
-  <div class="col-md-4 form-group">
-    <%= f.label :guest_number %>
-    <%= f.number_field :guest_number, class: "form-control" %>
-  </div>
+<div class="text-field">
+  <%= form.label :description %>
+  <%= form.text_area :description, type: 'text' %>
 </div>
-<div class="row">
-  <div class="col-md-3 form-group">
-    <%= f.label :country %>
-    <%= f.text_field :country, class: "form-control" %>
-  </div>
-  <div class="col-md-3 form-group">
-    <%= f.label :state %>
-    <%= f.text_field :state, class: "form-control" %>
-  </div>
-  <div class="col-md-3 form-group">
-    <%= f.label :city %>
-    <%= f.text_field :city, class: "form-control" %>
-  </div>
-  <div class="col-md-3 form-group">
-    <%= f.label :zipcode %>
-    <%= f.text_field :zipcode, class: "form-control" %>
-  </div>
+<div class="text-field">
+  <%= form.label :house_rules %>
+  <%= form.text_area :house_rules, type: 'text' %>
 </div>
-<div class="form-group">
-  <%= f.label :address %>
-  <%= f.text_field :address, class: "form-control" %>
+<div class="text-field">
+  <%= form.label :number_of_beds, "No. of Beds" %>
+  <%= form.text_field :number_of_beds, type: 'number' %>
 </div>
-<div class="form-group">
-  <%= f.label :price %>
-  <%= f.number_field :price, class: "form-control" %>
+<div class="text-field">
+  <%= form.label :number_of_guests %>
+  <%= form.text_field :number_of_guests, type: 'number' %>
 </div>
-<div class="row">
-  <div class="col-md-6 form-group">
-    <%= f.label :start_date %>
-    <%= f.date_field :start_date, class: "form-control" %>
-  </div>
-  <div class="col-md-6 form-group">
-    <%= f.label :end_date %>
-    <%= f.date_field :end_date, class: "form-control" %>
-  </div>
+<div class="text-field">
+  <%= form.label :number_of_bedrooms %>
+  <%= form.text_field :number_of_bedrooms, type: 'number' %>
 </div>
-<div class="form-group">
-  <%= f.label :property_type %>
-  <%= f.select :property_type, Listing.property_types.keys.map {|type| [type.titleize, type]}, class: "form-control" %>
+<div class="text-field">
+  <%= form.label :number_of_bathrooms %>
+  <%= form.text_field :number_of_bathrooms, type: 'number' %>
 </div>
-<div class="text-center">
-  <%= f.submit "Submit", class: "btn btn-default" %>
+<div class="text-field">
+  <%= form.label :street %>
+  <%= form.text_field :street, type: 'text' %>
 </div>
-<div class="spacing"></div>
+<div class="text-field">
+  <%= form.label :city %>
+  <%= form.text_field :city, type: 'text' %>
+</div>
+<div class="text-field">
+  <%= form.label :state %>
+  <%= form.text_field :state, type: 'text' %>
+</div>
+<div class="text-field">
+  <%= form.label :country %>
+  <%= form.text_field :country, type: 'text' %>
+</div>
+<div class="text-field">
+  <%= form.label :price %>
+  <%= form.text_field :price, type: 'number' %>
+</div>
+<div class="text-field">
+  <%= form.label :date_start %>
+  <%= form.text_field :date_start, type: 'date' %>
+</div>
+<div class="text-field">
+  <%= form.label :date_end %>
+  <%= form.text_field :date_end, type: 'date' %>
+</div>
+<div class="text-field">
+  <%= form.file_field :photos, multiple: true %>
+</div>
+<div class="text-field">
+  <%= form.label :category_list %>
+  <%= form.text_field :category_list, value: form.object.category_list.to_s, type: 'text' %>
+</div>

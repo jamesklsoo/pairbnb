@@ -1,53 +1,57 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- Load the Client component. -->
+    <script src="https://js.braintreegateway.com/web/3.6.3/js/client.min.js"></script>
+    <!-- Load the Hosted Fields component. -->
+    <script src="https://js.braintreegateway.com/web/3.6.3/js/hosted-fields.min.js"></script>
     <%= stylesheet_link_tag 'application' %>
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tag %>
   </head>
   <body>
-    <nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-default navbar-static-top">
       <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">BlairBnB</a>
+          <%= link_to ("Blairbnb"), root_path, class: "navbar-brand" %>
         </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li class="active"><%= link_to "Home", root_path %></li>
-            <li><%= link_to "All Listing", listings_path %></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <% if signed_in? -%>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.username %><span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><%= link_to "Profile", user_path(current_user) %></li>
-                  <li><%= link_to t(".sign_out"), sign_out_path, method: :delete %></li>
-                </ul>
-              </li>
-            <% else -%>
-              <li><%= link_to t(".sign_in"), sign_in_path %></li>
-            <% end -%>
-          </ul>
-        </div>
-        <!-- /.navbar-collapse -->
+        <% if signed_in? -%>
+          <%= button_to ("Sign Out"), sign_out_path, method: :delete , class: "navbar-form navbar-right btn btn-default"%>
+          <%= link_to ("Create Listing"), new_listing_path, class: "navbar-text navbar-right navbar-form" %>
+          <%= image_tag(current_user.avatar.thumb.url, class: "navbar-form navbar-right navbar-text profilepic") if current_user.avatar?%>
+          <%= link_to ("My Profile"), user_path(current_user), class: "navbar-text navbar-right navbar-form" %>
+          <%= link_to ("Listings"), listings_path, class: "navbar-text navbar-right navbar-form" %>
+          <%= form_tag(listings_path, :method => "get", id: "search-form", class: "navbar-form") do %>
+            <div class="form-group">
+              <%= text_field_tag :search, params[:search], placeholder: "Search Listings", class: "form-control" %>
+            </div>
+            <%= submit_tag "Search", :name => nil, class: "btn btn-default" %>
+          <% end %>
+        <% else %>
+          <%= link_to t(".sign_in"), sign_in_path %>
+          <%= link_to "Facebook Login", "/auth/facebook" %>
+        <% end %>
       </div>
-      <!-- /.container-fluid -->
     </nav>
-    <div id="flash">
-      <% flash.each do |key, value| -%>
-        <div id="flash_<%= key %>"><%=h value %></div>
-      <% end %>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <div id="flash">
+            <% flash.each do |key, value| -%>
+              <div id="flash_<%= key %>" class="<%= flash_class(key)%>"><%=h value %></div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <%= yield %>
     </div>
-    <%= yield %>
-  </div>
-</body>
+  </body>
 </html>

@@ -1,48 +1,49 @@
 class UsersController < Clearance::UsersController
-  before_action :find_user, only: [:show, :edit, :update, :destroy]
+  def user_from_params
+    @user =
+    if params[:user]
+      User.new(user_params)
+    else
+      User.new
+    end
+  end
 
-  def new
-    @user = User.new
-    render template: "users/new"
+  def edit
+    @user = User.find(current_user.id)
   end
 
   def create
     @user = User.new(user_params)
-
-    if @user.save
-      sign_in @user
-      redirect_back_or url_after_create
-    else
-      render template: "users/new"
+    respond_to do |format|
+      if @user.save
+        format.html {
+          flash[:notice] = "You successfully signed up!"
+          sign_in(@user)
+          redirect_to "/"
+        }
+      else
+        format.html {
+          flash[:error] = "There was an error signing you up!"
+          redirect_to sign_up_path
+        }
+        format.js
+      end
     end
-  end
 
-  def show
-  end
-
-  def edit
   end
 
   def update
-    if @user.update(user_params)
-      redirect_to @user
+    if current_user.update(user_params)
+      flash[:notice] = "User info successfully updated!"
+      redirect_to "/"
     else
-      render :edit
+      flash[:error] = current_user.errors.messages
+      redirect_to edit_user_path(current_user)
     end
-  end
-
-  def destroy
-    @user.destroy
-    sign_out
-    redirect_to root_path
   end
 
   private
   def user_params
-    params.require(:user).permit(:username, :email, :password)
-  end
-
-  def find_user
-    @user = User.find(params[:id])
+    params.require(:user).permit(:avatar, :email, :last_name, :first_name, :phone_number, :government_id, :location, :gender, :birthday, :autobiography, :password)
   end
 end
