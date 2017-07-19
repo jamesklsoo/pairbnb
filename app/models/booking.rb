@@ -3,7 +3,7 @@ class Booking < ApplicationRecord
   belongs_to :listing
 
   def overlap?(x,y) #x is listing , y is booking
-    if (Date.strptime(x.date_start, '%Y-%m-%d') - Date.strptime(y.date_end, '%Y-%m-%d')) * (Date.strptime(y.date_start, '%Y-%m-%d') - Date.strptime(x.date_end, '%Y-%m-%d')) > 0
+    if (Date.strptime(x.date_start, '%m/%d/%Y') - Date.strptime(y.date_end, '%m/%d/%Y')) * (Date.strptime(y.date_start, '%m/%d/%Y') - Date.strptime(x.date_end, '%m/%d/%Y')) > 0
       return true
     else
       return false

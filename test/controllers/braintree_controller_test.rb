@@ -1,7 +1,8 @@
 require 'test_helper'
 
 class BraintreeControllerTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
+  test "should get new" do
+    get braintree_new_url
+    assert_response :success
+  end
 end

@@ -52,7 +52,10 @@ gem 'braintree'
 
 # Page
 gem 'kaminari'
-gem 'will_paginate', '~> 3.0.6'
+gem 'will_paginate', '~> 3.1.0'
+
+# Search
+gem 'pg_search'
 
 gem 'sidekiq'
 gem "bootstrap_form"
@@ -60,6 +63,7 @@ gem 'carrierwave', '~> 1.0'
 gem 'rails-ujs'
 gem 'mini_magick'
 gem 'carrierwave-aws'
+gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap-datepicker-rails'
 gem 'acts-as-taggable-on', '~> 4.0'
 gem 'simple_form'

@@ -9,25 +9,29 @@ class ListingsController < ApplicationController
   end
 
   def index
-    if params[:@number]
-      @number = params[:@number]
-    else
-      @number ||= 0 unless @number
-    end
-
-    if params[:@number]
-      @listings = Listing.order(:id).limit(10).offset(params[:@number])
-    else
-      @listings = Listing.order(:id).limit(10).offset(@number)
-    end
-
-    filtering_params(params).each do |key, value|
-      @listings = @listings.public_send(key, value) if value.present?
-    end
-
-    # if params[:search]
-    #   @listings = Listing.search(params[:search]).order("created_at DESC")
+    # if params[:@number]
+    #   @number = params[:@number]
+    # else
+    #   @number ||= 0 unless @number
     # end
+
+    # if params[:@number]
+    #   @listings = Listing.order(:id).limit(10).offset(params[:@number])
+    # else
+    #   @listings = Listing.order(:id).limit(10).offset(@number)
+    # end
+
+    # filtering_params(params).each do |key, value|
+    #   @listings = @listings.public_send(key, value) if value.present?
+    # end
+
+    @listing = Listing.all.page(params[:page]).order("created_at DESC")
+
+    if params[:search]
+      @listing = Listing.search(params[:search]).page(params[:page]).order("created_at DESC")
+    end
+
+    #   @listings = Listing.search(params[:search]).order("created_at DESC")
   end
 
   def create

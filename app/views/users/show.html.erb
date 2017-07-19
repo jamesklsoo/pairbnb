@@ -8,16 +8,19 @@
 <h4> My Reservations</h4>
 <table class="table table-striped">
   <tr class="success">
+    <th>Name</th>
     <th> Date Start </th>
     <th> Date End </th>
     <th> Listing ID </th>
   </tr>
   <% current_user.bookings.each do |x| %>
     <tr>
+      <td><%= link_to "#{x.listing.name}", listing_path(x.listing_id) %></td>
       <td><%= x.date_start %> </td>
       <td><%= x.date_end %> </td>
       <td><%= x.listing_id %> </td>
       <td><%= button_to "Delete Booking", booking_path(x.id), method: :delete, class: "btn btn-default", data: {confirm: "Are you sure?"} %></td>
+      <td><a href="/braintree/new"><%= button_to "Make Payment", class: "btn btn-default"%></a></td>
     </tr>
   <% end %>
 </table>

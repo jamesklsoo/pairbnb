@@ -68,4 +68,9 @@ Rails.application.configure do
     authentication: "plain",
     enable_starttls_auto: true
   }
+
+  Braintree::Configuration.environment = :sandbox
+  Braintree::Configuration.merchant_id = '39xpsy7zykxkn865'
+  Braintree::Configuration.public_key = 'q2wnxpjbzh24gf7z'
+  Braintree::Configuration.private_key = '798852354b1c02e9f178736725f79594'
 end

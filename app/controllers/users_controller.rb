@@ -17,9 +17,8 @@ class UsersController < Clearance::UsersController
     respond_to do |format|
       if @user.save
         format.html {
-          flash[:notice] = "You successfully signed up!"
           sign_in(@user)
-          redirect_to "/"
+          redirect_to "/", notice: "You successfully signed up!"
         }
       else
         format.html {
