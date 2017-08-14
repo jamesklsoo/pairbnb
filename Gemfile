@@ -57,6 +57,7 @@ gem 'will_paginate', '~> 3.1.0'
 # Search
 gem 'pg_search'
 
+gem "fog-aws"
 gem 'sidekiq'
 gem "bootstrap_form"
 gem 'carrierwave', '~> 1.0'
