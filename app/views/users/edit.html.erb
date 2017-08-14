@@ -1,0 +1,9 @@
+<div id="clearance" class="update">
+  <h2><%= t(".title") %></h2>
+  <%= form_for @user, remote: true, authenticity_token: true do |form| %>
+    <%= render partial: '/users/form', object: form %>
+    <div class="submit-field">
+      <%= form.submit %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,7 @@
+console.log("hi");
+$(".errors").remove();
+
+<% @listing.errors.messages.map do |key, value| %>
+  console.log("<%= key %>")
+  $("#listing_<%= key %>").after("<span class='errors' style='color:red;'><%=key%> <%=value[0]%></span>");
+<% end %>

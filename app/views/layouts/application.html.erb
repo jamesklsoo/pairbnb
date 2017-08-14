@@ -1,14 +1,57 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Pairbnb</title>
-    <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- Load the Client component. -->
+    <script src="https://js.braintreegateway.com/web/3.6.3/js/client.min.js"></script>
+    <!-- Load the Hosted Fields component. -->
+    <script src="https://js.braintreegateway.com/web/3.6.3/js/hosted-fields.min.js"></script>
+    <%= stylesheet_link_tag 'application' %>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tag %>
   </head>
-
   <body>
-    <%= yield %>
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <%= link_to ("Blairbnb"), root_path, class: "navbar-brand" %>
+        </div>
+        <% if signed_in? -%>
+          <%= button_to ("Sign Out"), sign_out_path, method: :delete , class: "navbar-form navbar-right btn btn-default"%>
+          <%= link_to ("Create Listing"), new_listing_path, class: "navbar-text navbar-right navbar-form" %>
+          <%= image_tag(current_user.avatar.thumb.url, class: "navbar-form navbar-right navbar-text profilepic") if current_user.avatar?%>
+          <%= link_to ("My Profile"), user_path(current_user), class: "navbar-text navbar-right navbar-form" %>
+          <%= link_to ("Listings"), listings_path, class: "navbar-text navbar-right navbar-form" %>
+          <%= form_tag(listings_path, :method => "get", id: "search-form", class: "navbar-form") do %>
+            <div class="form-group">
+              <%= text_field_tag :search, params[:search], placeholder: "Search Listings", class: "form-control" %>
+            </div>
+            <%= submit_tag "Search", :name => nil, class: "btn btn-default" %>
+          <% end %>
+        <% else %>
+          <%= link_to t(".sign_in"), sign_in_path %>
+          <%= link_to "Facebook Login", "/auth/facebook" %>
+        <% end %>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <div id="flash">
+            <% flash.each do |key, value| -%>
+              <div id="flash_<%= key %>" class="<%= flash_class(key)%>"><%=h value %></div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <%= yield %>
+    </div>
   </body>
 </html>

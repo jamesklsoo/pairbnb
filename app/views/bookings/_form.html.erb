@@ -1,0 +1,18 @@
+<div class="input-daterange input-group" id="datepicker">
+  <div class="text-field">
+    <%= form.text_field :date_start, id: 'start_date', class: 'input-sm form-control'%>
+  </div>
+  <span class="input-group-addon">to</span>
+  <div class="text-field">
+    <%= form.text_field :date_end, id: 'end_date', class: 'input-sm form-control'%>
+  </div>
+</div>
+<br>
+<div class="text-field">
+  <%= form.number_field :number_of_guests, id: 'guests_no', class: 'input-sm form-control'%>
+</div>
+<br>
+<%= hidden_field_tag :listing_id, @listing.id %>
+<!-- <input type="text" class="input-sm form-control" name="start" id="start_date"/>
+<span class="input-group-addon">to</span>
+<input type="text" class="input-sm form-control" name="end" id = "end_date" /> -->

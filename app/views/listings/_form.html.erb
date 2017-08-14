@@ -1,0 +1,63 @@
+<div class="text-field">
+  <%= form.label :name %>
+  <%= form.text_field :name, type: 'text' %>
+</div>
+<div class="text-field">
+  <%= form.label :description %>
+  <%= form.text_area :description, type: 'text' %>
+</div>
+<div class="text-field">
+  <%= form.label :house_rules %>
+  <%= form.text_area :house_rules, type: 'text' %>
+</div>
+<div class="text-field">
+  <%= form.label :number_of_beds, "No. of Beds" %>
+  <%= form.text_field :number_of_beds, type: 'number' %>
+</div>
+<div class="text-field">
+  <%= form.label :number_of_guests %>
+  <%= form.text_field :number_of_guests, type: 'number' %>
+</div>
+<div class="text-field">
+  <%= form.label :number_of_bedrooms %>
+  <%= form.text_field :number_of_bedrooms, type: 'number' %>
+</div>
+<div class="text-field">
+  <%= form.label :number_of_bathrooms %>
+  <%= form.text_field :number_of_bathrooms, type: 'number' %>
+</div>
+<div class="text-field">
+  <%= form.label :street %>
+  <%= form.text_field :street, type: 'text' %>
+</div>
+<div class="text-field">
+  <%= form.label :city %>
+  <%= form.text_field :city, type: 'text' %>
+</div>
+<div class="text-field">
+  <%= form.label :state %>
+  <%= form.text_field :state, type: 'text' %>
+</div>
+<div class="text-field">
+  <%= form.label :country %>
+  <%= form.text_field :country, type: 'text' %>
+</div>
+<div class="text-field">
+  <%= form.label :price %>
+  <%= form.text_field :price, type: 'number' %>
+</div>
+<div class="text-field">
+  <%= form.label :date_start %>
+  <%= form.text_field :date_start, type: 'date' %>
+</div>
+<div class="text-field">
+  <%= form.label :date_end %>
+  <%= form.text_field :date_end, type: 'date' %>
+</div>
+<div class="text-field">
+  <%= form.file_field :photos, multiple: true %>
+</div>
+<div class="text-field">
+  <%= form.label :category_list %>
+  <%= form.text_field :category_list, value: form.object.category_list.to_s, type: 'text' %>
+</div>

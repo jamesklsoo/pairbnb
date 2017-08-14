@@ -1,0 +1,63 @@
+<h2><%=@listing.name%></h2>
+Verification: <%= @listing.verification %> <br>
+Description : <%= @listing.description %> <br>
+House Rules : <%= @listing.house_rules %> <br>
+Number of Beds: <%= @listing.number_of_beds %> <br>
+Number of Guests: <%= @listing.number_of_guests %> <br>
+Number of Bedrooms: <%= @listing.number_of_bedrooms %> <br>
+Street name: <%= @listing.street %> <br>
+City: <%= @listing.city %> <br>
+State: <%= @listing.state %> <br>
+Country: <%= @listing.country %> <br>
+Price: <%= @listing.price %> <br>
+<%= @listing.date_start %> <br>
+<%= @listing.date_end %> <br>
+Host's Name = <%= @listing.user.first_name %>
+<% unless current_user.customer? %>
+  <%= button_to ("Verify Listing"), listing_path, :method => "put", params: {'verification' => true} %>
+<% end %> <br>
+<% if @listing.photos.present? %>
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class= "active" ></li>
+      <% (1..@listing.photos.count - 1).each do |i| %>
+        <li data-target="#myCarousel" data-slide-to=<%=i.to_s%>></li>
+      <% end %>
+    </ol>
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+      <div class="item active">
+        <%= image_tag @listing.photos.first, class: "img-responsive center-block", style: "width:50%" %>
+      </div>
+      <% @listing.photos.shift %>
+      <% @listing.photos.each do |image| %>
+        <div class="item">
+          <%= image_tag image, class: "img-responsive center-block", style: "width:50%" %>
+        </div>
+      <% end %>
+    </div>
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+<% end %>
+<div class="row">
+  <div class="col-md-2">
+  </div>
+  <div class="col-md-4">
+    <h3>Make a Reservation</h3>
+    <%= form_for @booking do |form| %>
+      <%= render partial: '/bookings/form', object: form %>
+      <div class="submit-field">
+        <%= form.submit %>
+      </div>
+    <% end %>
+  </div>
+</div>

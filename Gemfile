@@ -21,6 +21,8 @@ gem 'uglifier', '>= 1.3.0'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
+# Use jquery as the JavaScript library
+gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -32,6 +34,44 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+# User authentication
+gem "clearance"
+gem "figaro"
+
+# Facebook authentication
+gem 'omniauth'
+gem 'omniauth-facebook'
+
+# Data testing
+gem 'faker'
+
+
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'braintree'
+
+# Page
+gem 'kaminari'
+gem 'will_paginate', '~> 3.1.0'
+
+# Search
+gem 'pg_search'
+
+gem "fog-aws"
+gem 'sidekiq'
+gem "bootstrap_form"
+gem 'carrierwave', '~> 1.0'
+gem 'rails-ujs'
+gem 'mini_magick'
+gem 'carrierwave-aws'
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap-datepicker-rails'
+gem 'acts-as-taggable-on', '~> 4.0'
+gem 'simple_form'
+gem 'rails_12factor'
+gem 'unicorn'
+gem "skylight"
+gem "letter_opener", :group => :development
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

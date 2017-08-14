@@ -1,0 +1,10 @@
+<div id="clearance" class="create-listing">
+  <h2><%= t(".title") %></h2>
+  <%= simple_form_for @listing,  authenticity_token: true do |form| %>
+    <%= render partial: '/listings/form', object: form %>
+    <div class="submit-field">
+      <%= form.submit %>
+    </div>
+  <% end %>
+  <%= button_to ("Delete Listing"), listing_path, method: :delete, data: {confirm: "Are you sure?"} %>
+</div>

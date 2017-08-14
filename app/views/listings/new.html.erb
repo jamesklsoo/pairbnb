@@ -1,0 +1,9 @@
+<div id="clearance" class="create-listing">
+  <h2><%= t(".title") %></h2>
+  <%= form_for @listing, remote: true,  authenticity_token: true  do |form| %>
+    <%= render partial: '/listings/form', object: form %>
+    <div class="submit-field">
+      <%= form.submit %>
+    </div>
+  <% end %>
+</div>

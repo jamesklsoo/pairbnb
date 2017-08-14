@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-1">
+    <h2>Listings:</h2>
+  </div>
+</div>
+<div class="row">
+  <%= form_tag(listings_path, :method => "get", id: "search-form", class: "navbar-form") do %>
+    <div class="form-group">
+      <%= text_field_tag :search, params[:search], placeholder: "Search Listings", class: "form-control" %>
+    </div>
+    <%= submit_tag "Search", :name => nil, class: "btn btn-default" %>
+  <% end %>
+  <% @listing.each do |listing| %>
+    <div class="col-md-1"></div>
+    <div class="col-md-3">
+      <h4><%= link_to listing.name, listing_path(listing.id) %></h4>
+      <p>Location: <%= listing.country %>
+        <p>Description: <%= listing.description %></p>
+        <br>
+      </div>
+    <% end %>
+    <%= will_paginate @listing%>
+  </div>
