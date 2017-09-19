@@ -60,4 +60,12 @@ Host's Name = <%= @listing.user.first_name %>
       </div>
     <% end %>
   </div>
+  <p>
+    <% if current_user.id == @listing.user_id%>
+      <%= link_to 'Edit', edit_listing_path %>
+    <%else%>
+      <hr>
+    <% end %>
+    <%= link_to 'Back', listings_path %>
+  </p>
 </div>
